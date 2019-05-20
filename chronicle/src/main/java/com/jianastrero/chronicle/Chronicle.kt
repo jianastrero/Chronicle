@@ -85,6 +85,7 @@ object Chronicle {
         val stackTrace = Thread.currentThread().stackTrace
 
         stackTrace.forEachIndexed { index, element ->
+            Log.d("JIAN TEST", "className: " + element.className)
             if (index > 1 && !chronicleObjectRegex.matches(element.className))
                 return "${element.fileName}:${element.lineNumber}(${element.methodName})"
         }
