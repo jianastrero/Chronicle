@@ -8,7 +8,7 @@ class Everything : Story {
 
     }
 
-    override fun log(priority: Int, throwable: Throwable): Boolean {
+    override fun log(priority: Int, throwable: Throwable?): Boolean {
         return priority >= Log.VERBOSE
     }
 }
