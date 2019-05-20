@@ -38,14 +38,14 @@ object Chronicle {
 
     fun d(throwable: Throwable?) {
         story?.let {
-            if (it.log(Log.DEBUG, throwable))
+            if (it.log(Log.DEBUG, null, throwable))
                 Log.d(getTag(), throwable?.message, throwable)
         }
     }
 
     fun d(message: String?) {
         story?.let {
-            if (it.log(Log.DEBUG, Throwable(message)))
+            if (it.log(Log.DEBUG, message, null))
                 Log.d(getTag(), message)
         }
     }
