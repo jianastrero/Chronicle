@@ -37,17 +37,11 @@ object Chronicle {
     }
 
     fun d(throwable: Throwable?) {
-        story?.let {
-            if (it.log(Log.DEBUG, null, throwable))
-                Log.d(getTag(), throwable?.message, throwable)
-        }
+        log(Log.DEBUG, throwable = throwable)
     }
 
     fun d(message: String?) {
-        story?.let {
-            if (it.log(Log.DEBUG, message, null))
-                Log.d(getTag(), message)
-        }
+        log(Log.DEBUG, message = message)
     }
 
 
@@ -59,6 +53,14 @@ object Chronicle {
     /**
      * Private Methods
      */
+    private fun log(severity: Int, message: String? = null, throwable: Throwable? = null) {
+        story?.let {
+            if (it.log(severity, message, throwable))
+                message?.run {
+                    Log.d(getTag(), this)
+                } ?: Log.d(getTag(), throwable?.message, throwable)
+        }
+    }
 
     /**
      * [
