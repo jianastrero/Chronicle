@@ -7,6 +7,7 @@ object Chronicle {
     /**
      * Values declaration and initializatiom
      */
+    private val chronicleObjectRegex = Regex("com\\.jianastrero\\.chronicle\\.Chronicle\\..*");
 
 
     /**
@@ -73,6 +74,21 @@ object Chronicle {
      * ]
      */
     private fun getTag(): String {
+        var fileName = ""
+        var methodName = ""
+        var line = 0
+        val stackTrace = Thread.currentThread().stackTrace
 
+        stackTrace.forEachIndexed { index, element ->
+            if (index > 1) {
+                if (!chronicleObjectRegex.matches(element.className)) {
+                    fileName = element.fileName
+                    methodName = element.methodName
+                    line = element.lineNumber
+                }
+            }
+        }
+
+        return "$fileName:$line($methodName)"
     }
 }
