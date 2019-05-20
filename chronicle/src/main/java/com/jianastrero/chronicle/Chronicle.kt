@@ -1,5 +1,7 @@
 package com.jianastrero.chronicle
 
+import android.util.Log
+
 object Chronicle {
     /**
      * Values declaration and initializatiom
@@ -40,4 +42,9 @@ object Chronicle {
     /**
      * Private Methods
      */
+    private fun getKey(): String {
+        val stackTrace = Thread.currentThread().stackTrace;
+        Log.d("JIAN", stackTrace.contentDeepToString())
+        return "";
+    }
 }
