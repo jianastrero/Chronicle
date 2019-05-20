@@ -8,5 +8,5 @@ interface Story {
      *
      * @return true if this should be logged and false if not
      */
-    fun log(severity: Int, message: String?, throwable: Throwable?): Boolean
+    fun log(severity: Int, message: String? = null, throwable: Throwable? = null): Boolean
 }
