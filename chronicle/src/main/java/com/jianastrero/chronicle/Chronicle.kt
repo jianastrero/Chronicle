@@ -37,7 +37,9 @@ object Chronicle {
     }
 
     fun d(throwable: Throwable?) {
-        getKey()
+        story?.let {
+            getKey()
+        }
     }
 
 
