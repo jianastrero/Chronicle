@@ -1,6 +1,8 @@
 package com.jianastrero.chronicle
 
 import android.util.Log
+import com.jianastrero.chronicle.stories.Everything
+import com.jianastrero.chronicle.stories.Story
 
 object Chronicle {
     /**
@@ -11,6 +13,7 @@ object Chronicle {
     /**
      * Variables declaration and initialization
      */
+    private var story: Story = Everything()
 
 
     /**
