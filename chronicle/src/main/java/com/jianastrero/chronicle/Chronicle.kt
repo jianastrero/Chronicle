@@ -39,7 +39,14 @@ object Chronicle {
     fun d(throwable: Throwable?) {
         story?.let {
             if (it.log(Log.DEBUG, throwable))
-                Log.d(getTag(), throwable.toString(), throwable)
+                Log.d(getTag(), throwable?.message, throwable)
+        }
+    }
+
+    fun d(message: String?) {
+        story?.let {
+            if (it.log(Log.DEBUG, Throwable(message)))
+                Log.d(getTag(), message)
         }
     }
 
@@ -75,21 +82,13 @@ object Chronicle {
      * ]
      */
     private fun getTag(): String {
-        var fileName = ""
-        var methodName = ""
-        var line = 0
         val stackTrace = Thread.currentThread().stackTrace
 
         stackTrace.forEachIndexed { index, element ->
-            if (index > 1) {
-                if (!chronicleObjectRegex.matches(element.className)) {
-                    fileName = element.fileName
-                    methodName = element.methodName
-                    line = element.lineNumber
-                }
-            }
+            if (index > 1 && !chronicleObjectRegex.matches(element.className))
+                return "${element.fileName}:${element.lineNumber}(${element.methodName})"
         }
 
-        return "$fileName:$line($methodName)"
+        return "Chronicle(unknown"
     }
 }
