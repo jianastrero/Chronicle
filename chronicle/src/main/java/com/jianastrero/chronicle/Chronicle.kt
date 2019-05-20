@@ -52,7 +52,7 @@ object Chronicle {
      */
     private fun getKey(): String {
         val stackTrace = Thread.currentThread().stackTrace;
-        Log.d("JIAN", stackTrace.contentDeepToString())
+        Log.d("JIAN TEST", stackTrace.contentDeepToString())
         return "";
     }
 }
