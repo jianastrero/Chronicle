@@ -13,7 +13,7 @@ object Chronicle {
     /**
      * Variables declaration and initialization
      */
-    private var story: Story = Everything()
+    private var story: Story? = null
 
 
     /**
@@ -32,7 +32,7 @@ object Chronicle {
     /**
      * Public Methods
      */
-    fun of(story: Story) {
+    fun of(story: Story?) {
         this.story = story
     }
 
