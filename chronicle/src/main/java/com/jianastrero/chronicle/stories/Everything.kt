@@ -1,5 +1,7 @@
 package com.jianastrero.chronicle.stories
 
+import android.util.Log
+
 class Everything : Story {
 
     init {
@@ -7,6 +9,6 @@ class Everything : Story {
     }
 
     override fun log(priority: Int, throwable: Throwable): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return priority >= Log.VERBOSE
     }
 }
