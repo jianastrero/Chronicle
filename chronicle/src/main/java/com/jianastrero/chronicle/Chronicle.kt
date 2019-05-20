@@ -38,7 +38,8 @@ object Chronicle {
 
     fun d(throwable: Throwable?) {
         story?.let {
-            getKey()
+            if (it.log(Log.DEBUG, throwable))
+                Log.d(getTag(), throwable.toString(), throwable)
         }
     }
 
