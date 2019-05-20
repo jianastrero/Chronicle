@@ -1,6 +1,7 @@
 package com.jianastrero.chronicle
 
 import android.util.Log
+import com.jianastrero.chronicle.exceptions.UnknownSeverityException
 import com.jianastrero.chronicle.stories.Story
 
 object Chronicle {
@@ -37,11 +38,11 @@ object Chronicle {
     }
 
     fun d(throwable: Throwable?) {
-        log(Log.DEBUG, throwable = throwable)
+        Log.DEBUG.log(throwable = throwable)
     }
 
     fun d(message: String?) {
-        log(Log.DEBUG, message = message)
+        Log.DEBUG.log(message = message)
     }
 
 
@@ -53,12 +54,44 @@ object Chronicle {
     /**
      * Private Methods
      */
-    private fun log(severity: Int, message: String? = null, throwable: Throwable? = null) {
+    private fun Int.log(message: String? = null, throwable: Throwable? = null) {
         story?.let {
-            if (it.log(severity, message, throwable))
-                message?.run {
-                    Log.d(getTag(), this)
-                } ?: Log.d(getTag(), throwable?.message, throwable)
+            if (it.log(this, message, throwable))
+                this.log().invoke(message, throwable)
+        }
+    }
+
+    private fun Int.log(): (String?, Throwable?) -> Unit {
+        return { string, throwable ->
+            string?.run {
+                getStringLogger().invoke(getTag(), this)
+            } ?: run {
+                getThrowableLogger().invoke(getTag(), throwable?.message, throwable)
+            }
+        }
+    }
+
+    private fun Int.getStringLogger(): (String, String?) -> Int {
+        return when (this) {
+            Log.VERBOSE -> Log::v
+            Log.DEBUG -> Log::d
+            Log.INFO -> Log::i
+            Log.WARN -> Log::w
+            Log.ERROR -> Log::e
+            Log.ASSERT -> Log::wtf
+            else -> throw UnknownSeverityException(this)
+        }
+    }
+
+    private fun Int.getThrowableLogger(): (String, String?, Throwable?) -> Int {
+        return when (this) {
+            Log.VERBOSE -> Log::v
+            Log.DEBUG -> Log::d
+            Log.INFO -> Log::i
+            Log.WARN -> Log::w
+            Log.ERROR -> Log::e
+            Log.ASSERT -> Log::wtf
+            else -> throw UnknownSeverityException(this)
         }
     }
 
