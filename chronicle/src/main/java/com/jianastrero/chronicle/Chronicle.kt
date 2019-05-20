@@ -32,6 +32,10 @@ object Chronicle {
     /**
      * Public Methods
      */
+    fun of(story: Story) {
+        this.story = story
+    }
+
     fun d(throwable: Throwable?) {
         getKey()
     }
