@@ -27,6 +27,9 @@ object Chronicle {
     /**
      * Public Methods
      */
+    fun d(throwable: Throwable?) {
+
+    }
 
 
     /**
