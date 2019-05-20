@@ -1,7 +1,6 @@
 package com.jianastrero.chronicle
 
 import android.util.Log
-import com.jianastrero.chronicle.stories.Everything
 import com.jianastrero.chronicle.stories.Story
 
 object Chronicle {

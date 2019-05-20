@@ -1,7 +1,6 @@
-package com.jianastrero.chronicle.sample
+package com.jianastrero.chronicle
 
 import android.app.Application
-import com.jianastrero.chronicle.Chronicle
 import com.jianastrero.chronicle.stories.Everything
 
 class SampleApp : Application() {

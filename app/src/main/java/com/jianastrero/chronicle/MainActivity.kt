@@ -1,9 +1,8 @@
-package com.jianastrero.chronicle.sample
+package com.jianastrero.chronicle
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.jianastrero.chronicle.Chronicle
-import com.jianastrero.chronicle.R
+import com.jianastrero.chroniclesample.R
 
 class MainActivity : AppCompatActivity() {
 
