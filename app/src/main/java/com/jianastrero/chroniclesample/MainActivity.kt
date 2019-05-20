@@ -11,6 +11,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Chronicle.d(Throwable("Hello Errors"))
+        Chronicle.d("Hello Errors")
     }
 }
