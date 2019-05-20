@@ -1,6 +1,6 @@
 package com.jianastrero.chronicle.stories
 
-class Debug : Story {
+class Everything : Story {
 
     init {
 
