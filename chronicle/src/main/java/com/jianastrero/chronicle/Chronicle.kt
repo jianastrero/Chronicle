@@ -7,7 +7,7 @@ object Chronicle {
     /**
      * Values declaration and initializatiom
      */
-    private val chronicleObjectRegex = Regex("com\\.jianastrero\\.chronicle\\.Chronicle\\..*");
+    private val chronicleObjectRegex = Regex("com\\.jianastrero\\.chronicle\\..*");
 
 
     /**
@@ -85,11 +85,10 @@ object Chronicle {
         val stackTrace = Thread.currentThread().stackTrace
 
         stackTrace.forEachIndexed { index, element ->
-            Log.d("JIAN TEST", "className: " + element.className)
             if (index > 1 && !chronicleObjectRegex.matches(element.className))
                 return "${element.fileName}:${element.lineNumber}(${element.methodName})"
         }
 
-        return "Chronicle(unknown"
+        return "Chronicle(unknown)"
     }
 }
