@@ -30,10 +30,17 @@ import com.jianastrero.chronicle.Chronicle
 
 class MainActivity : AppCompatActivity() {
 
+    private val privateVal = 0f
+    private var privateVar = 1f
+
+    val publicVal = 2f
+    var publicVar = 3f
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Chronicle.v("Hello Errors")
+        Chronicle.d("Hello Errors")
+        Chronicle.d(this)
     }
 }
