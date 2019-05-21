@@ -69,6 +69,10 @@ object Chronicle {
         Log.DEBUG.log(message)
     }
 
+    fun <T> i(message: T?) {
+        Log.INFO.log(message)
+    }
+
     /**
      * Protected Methods
      */
