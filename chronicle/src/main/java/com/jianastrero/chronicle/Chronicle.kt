@@ -61,10 +61,13 @@ object Chronicle {
         this.story = story
     }
 
+    fun <T> v(message: T?) {
+        Log.VERBOSE.log(message)
+    }
+
     fun <T> d(message: T?) {
         Log.DEBUG.log(message)
     }
-
 
     /**
      * Protected Methods
