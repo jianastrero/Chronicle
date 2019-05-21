@@ -24,10 +24,12 @@
 
 package com.jianastrero.chronicle.characters
 
-abstract class SupportingCharacter(npc: Any) {
+abstract class SupportingCharacter(character: Any) {
     abstract fun getName(): String
 
     override fun toString(): String {
         return "";
     }
+
+    class Trait(type: String, name: String, value: String)
 }
