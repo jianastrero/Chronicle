@@ -81,6 +81,10 @@ object Chronicle {
         Log.ERROR.log(message)
     }
 
+    fun <T> wtf(message: T?) {
+        Log.ASSERT.log(message)
+    }
+
     /**
      * Protected Methods
      */
