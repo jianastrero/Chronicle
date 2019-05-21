@@ -31,10 +31,10 @@ import com.jianastrero.chronicle.Chronicle
 class MainActivity : AppCompatActivity() {
 
     private val privateVal = 0f
-    private var privateVar = 1f
+    private var privateVar = 1
 
-    val publicVal = 2f
-    var publicVar = 3f
+    val publicVal = 2.0
+    var publicVar = 3L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
