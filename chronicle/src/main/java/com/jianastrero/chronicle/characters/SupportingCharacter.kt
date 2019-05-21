@@ -33,8 +33,5 @@ abstract class SupportingCharacter(character: Any) {
         return "";
     }
 
-    fun addTrait(trait: Trait) =
-            traits.add(trait)
-
     class Trait(type: String, name: String, value: String)
 }
