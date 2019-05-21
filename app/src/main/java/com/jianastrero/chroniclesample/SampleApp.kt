@@ -26,12 +26,12 @@ package com.jianastrero.chroniclesample
 
 import android.app.Application
 import com.jianastrero.chronicle.Chronicle
-import com.jianastrero.chronicle.stories.Everything
+import com.jianastrero.chronicle.stories.Debug
 
 class SampleApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        Chronicle.of(Everything())
+        Chronicle.of(Debug())
     }
 }
