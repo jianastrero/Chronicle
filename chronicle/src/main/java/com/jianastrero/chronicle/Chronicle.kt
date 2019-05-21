@@ -62,10 +62,7 @@ object Chronicle {
     }
 
     fun <T> d(message: T?) {
-        when (message) {
-            is String -> Log.DEBUG.getStringLogger().invoke(getTag(), message)
-            is Throwable -> Log.DEBUG.getThrowableLogger().invoke(getTag(), message.message, message)
-        }
+        Log.DEBUG.log(message)
     }
 
 
@@ -77,6 +74,19 @@ object Chronicle {
     /**
      * Private Methods
      */
+    private fun <T> Int.log(message: T?) {
+        story?.let { story ->
+            val msg: String? = if (message is String) message else message?.toString()
+            val throwable: Throwable? = if (message is Throwable) message else null
+
+            if (story.log(this, msg, throwable)) {
+                when (message) {
+                    is String -> getStringLogger().invoke(getTag(), message)
+                    is Throwable -> getThrowableLogger().invoke(getTag(), message.message, message)
+                }
+            }
+        }
+    }
     private fun Int.getStringLogger(): (String, String?) -> Int {
         return when (this) {
             Log.VERBOSE -> Log::v
