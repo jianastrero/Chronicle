@@ -25,6 +25,7 @@
 package com.jianastrero.chronicle
 
 import android.util.Log
+import com.jianastrero.chronicle.characters.SupportingCharacter
 import com.jianastrero.chronicle.exceptions.UnknownSeverityException
 import com.jianastrero.chronicle.stories.Story
 
@@ -105,6 +106,16 @@ object Chronicle {
                     }
                     is Throwable -> {
                         getThrowableLogger().invoke(getTag(), message.message, message)
+                    }
+                    is T -> {
+                        getStringLogger().invoke(
+                            getTag(),
+                            object : SupportingCharacter(message) {
+                                override fun getName(): String {
+                                    return message.javaClass.canonicalName ?: "Supporting Character"
+                                }
+                            }.toString()
+                        )
                     }
                 }
             }
