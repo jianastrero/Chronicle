@@ -24,14 +24,54 @@
 
 package com.jianastrero.chronicle.characters
 
-abstract class SupportingCharacter(character: Any) {
+import kotlin.reflect.KProperty1
+import kotlin.reflect.full.declaredMemberProperties
+import kotlin.reflect.jvm.isAccessible
+
+abstract class SupportingCharacter(private val character: Any) {
     abstract fun getName(): String
 
     private val traits: MutableList<Trait> = mutableListOf()
 
     override fun toString(): String {
-        return "";
+        updateTraits()
+        var str = " \n\n-${getName()}---"
+
+        traits.forEach {
+            str += "\n$it"
+        }
+
+        str += "\n "
+
+        return str
     }
 
-    class Trait(type: String, name: String, value: String)
+    private fun updateTraits() {
+        val properties = character::class.declaredMemberProperties as Collection<KProperty1<Any, Any?>>
+        properties.forEach {
+            val accessible = it.isAccessible
+            it.isAccessible = true
+
+            traits.add(Trait(it.returnType.toString(), it.name, "${it.get(character)}"))
+
+            it.isAccessible = accessible
+        }
+    }
+
+    private fun getMaxLineCharacters(): Int {
+        var max = getName().length
+
+        traits.forEach {
+            if (it.toString().length > max)
+                max = it.toString().length
+        }
+
+        return max
+    }
+
+    class Trait(val type: String, val name: String, val value: String) {
+        override fun toString(): String {
+            return "$name($value): $type"
+        }
+    }
 }
