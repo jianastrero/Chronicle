@@ -73,6 +73,10 @@ object Chronicle {
         Log.INFO.log(message)
     }
 
+    fun <T> w(message: T?) {
+        Log.WARN.log(message)
+    }
+
     /**
      * Protected Methods
      */
