@@ -27,6 +27,8 @@ package com.jianastrero.chronicle.characters
 abstract class SupportingCharacter(character: Any) {
     abstract fun getName(): String
 
+    private val traits: MutableList<Trait> = mutableListOf()
+
     override fun toString(): String {
         return "";
     }
